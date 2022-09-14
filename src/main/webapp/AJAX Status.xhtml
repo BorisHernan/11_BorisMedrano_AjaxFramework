@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Ajax Framework - Status</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>   
+    </h:head>
+
+    <body>
+        <h:form>
+        <p:sidebar widgetVar="sidebar1">
+            <h3>Menu</h3>
+            <p:megaMenu orientation="vertical" autoDisplay="false">
+                <p:submenu label="Ajax Framework">
+                    <p:column>
+                        <p:submenu label="Ajax Framework">
+                            <p:menuitem value="Status" outcome="AJAX Status.xhtml" />
+                            <p:menuitem value="Fragment y AutoUpdate" outcome="AJAX Fragment y AutoUpdate.xhtml" />
+                            <p:menuitem value="Dropdown" outcome="AJAX Dropdown.xhtml" /> 
+                            <p:menuitem value="RemoteCommand" outcome="AJAX Remotecommand.xhtml" /> </p:submenu>
+                    </p:column>
+                </p:submenu>
+            </p:megaMenu> 
+        </p:sidebar>
+        <p:commandButton icon="pi pi-list" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
+        </h:form>
+        <p:separator/>
+        
+        
+        <p:ajaxStatus delay="8000" style="display:block; margin-bottom:2em;height: 4px;">
+            <f:facet name="default">
+                <h:outputText value="Estado : No se a descargado"/>
+            </f:facet>
+
+            <f:facet name="start">
+                <p:graphicImage url="./images/descargas.gif"/>
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value="Estado : Descargado "/>
+            </f:facet>
+        </p:ajaxStatus>
+        <p:separator/>
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog'.hide()"/>
+        <p:graphicImage value="./images/descargas.gif"/>
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+        </p:dialog>
+
+        <h:form>
+
+            <p:commandButton value="Descargar" onclick="this.form.target = '/images/descargas.gif'"/>
+        </h:form>
+
+
+    </body>
+
+</html>

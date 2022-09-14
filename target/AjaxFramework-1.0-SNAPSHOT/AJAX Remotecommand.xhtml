@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Ajax Framework - Remote Command</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+       <h:form>
+        <p:sidebar widgetVar="sidebar1">
+            <h3>Menu</h3>
+            <p:megaMenu orientation="vertical" autoDisplay="false">
+                <p:submenu label="Ajax Framework">
+                    <p:column>
+                        <p:submenu label="Ajax Framework">
+                            <p:menuitem value="Status" outcome="AJAX Status.xhtml" />
+                            <p:menuitem value="Fragment y AutoUpdate" outcome="AJAX Fragment y AutoUpdate.xhtml" />
+                            <p:menuitem value="Dropdown" outcome="AJAX Dropdown.xhtml" /> 
+                            <p:menuitem value="RemoteCommand" outcome="AJAX Remotecommand.xhtml" /> </p:submenu>
+                    </p:column>
+                </p:submenu>
+            </p:megaMenu> 
+        </p:sidebar>
+        <p:commandButton icon="pi pi-list" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
+        </h:form>
+        <p:separator/>
+        
+        <h:form>
+        <p:remoteCommand name="rc" update="msgs" action="#{rcb.display()}"/>
+        <p:growl id="msgs" showDetail="true"/>
+        <p:commandButton type="button" onclick="rc1 ()" value="Despeglar"/>
+        </h:form>
+        <script type="text/javascript">
+            function rc1()
+            {
+            let repuesta;
+            let intententos = 0;
+        
+                while (repuesta != 4) {
+                intententos = intententos + 1;
+                pregunta = prompt("¿Cuánto es (2 + 2)??");
+                repuesta = pregunta;
+                alert(" Respondiste: " + repuesta);
+                if (repuesta == 4) {
+                    alert("¡¡¡Felicidades eres un Genio!!!");
+                } else {
+                    alert(" Respuesta incorrecta.\n Vuelve a intentarlo");
+            }
+        }   
+            }
+        </script>
+    </h:body>
+    
+</html>
